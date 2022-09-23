@@ -3,9 +3,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
-    path: '/agent',
-    name: 'Agent',
-    component: () => import('@/views/Agent.vue')
+    path: '/',
+    name: 'Main',
+    component: () => import('@/views/Main.vue')
   },
   {
     path: '/search',

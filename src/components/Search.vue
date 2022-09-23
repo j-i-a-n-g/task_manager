@@ -23,7 +23,7 @@ const value = ref('')
 
 const onSearch = (val) => Toast(val)
 const onCancel = () => {
-  router.push({ path: '/agent', name: 'Agent' })
+  router.push({ path: '/', name: 'Main' })
   Toast('111')
 }
 </script>
@@ -53,7 +53,6 @@ const onCancel = () => {
       .van-search__field {
       background-color: #f2f2f2;
       border-radius: 10px;
-
     }
     }
   }
