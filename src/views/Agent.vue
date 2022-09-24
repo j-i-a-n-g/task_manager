@@ -1,14 +1,25 @@
 <template>
   <div class="agent">
-    <van-search placeholder="搜索任务名称" @focus="RouteToSearch"/>
+    <div class="search">
+      <SearchBar />
+    </div>
     <div class="agent-list">
-      <div class="agent-list-item" v-for="(item, index) in taskBoxList" :key="index" :style="{backgroundColor: item.rgba}">
-        <div class="agent-list-item-icon" :style="{backgroundColor: item.choosedColor}">
+      <div
+        class="agent-list-item"
+        v-for="(item, index) in taskBoxList"
+        :key="index"
+        :style="{ backgroundColor: item.rgba }"
+        @click="goToWork(item)"
+      >
+        <div
+          class="agent-list-item-icon"
+          :style="{ backgroundColor: item.choosedColor }"
+        >
           <van-icon name="chat-o" color="#fff" />
         </div>
         <div class="agent-list-item-content">
-          <p :style="{color: item.choosedColor}">{{item.taskName}}</p>
-          <span>{{item.taskList.length}}</span>
+          <p :style="{ color: item.choosedColor }">{{ item.taskName }}</p>
+          <span>{{ item.taskList.length }}</span>
         </div>
       </div>
 
@@ -25,19 +36,23 @@
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import TaskBox from '@/components/TaskBox.vue'
+import SearchBar from '@/components/SearchBar.vue'
 import { getTaskBoxList } from '@/assets/api/index'
 import { computed, onMounted, ref, watch } from 'vue'
 const router = useRouter()
 const store = useStore()
-const RouteToSearch = function () {
-  router.push({ path: '/search', name: 'Search' })
-}
 // 任务箱的数组
 const taskBoxList = ref([])
+// 组件生成时从vuex获取数据或发起数据请求
 onMounted(async () => {
   const { data } = await getTaskBoxList()
-  const newTaskList = data.map(item => {
-    item.rgba = item.choosedColor.slice(0, 3) + 'a' + item.choosedColor.slice(3, -1) + ',.3' + item.choosedColor.slice(-1)
+  const newTaskList = data.map((item) => {
+    item.rgba =
+      item.choosedColor.slice(0, 3) +
+      'a' +
+      item.choosedColor.slice(3, -1) +
+      ',.3' +
+      item.choosedColor.slice(-1)
     return item
   })
   store.commit('saveTaskBox', newTaskList)
@@ -57,43 +72,31 @@ const taskBoxArr = computed(() => {
 watch(taskBoxArr, (val) => {
   taskBoxList.value = val
 })
-
+// 点击任务箱，跳转到工作列表页面
+const goToWork = (item) => {
+  router.push({ name: 'Work', params: { item } })
+}
 </script>
 
 <style lang="scss" scoped>
-  @import '@css/style.scss';
+@import "@css/style.scss";
 .agent {
   width: px2rem(375);
   padding: 0 px2rem(20);
   box-sizing: border-box;
-  ::v-deep .van-search {
-    border-bottom: 1px solid #ccc;
-    width: px2rem(335);
+  .search {
     position: fixed;
     top: 0;
     z-index: 2;
-      .van-search__content {
-      padding: 0;
-      border-radius: 10px;
-
-      .van-field__left-icon {
-        margin-left: 10px;
-      }
-    }
-      .van-search__field {
-      background-color: #f2f2f2;
-      border-radius: 10px;
-
-    }
+    width: px2rem(335);
   }
   &-list {
     padding-top: 55px;
     width: 100%;
-    // height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
+    background-color: #f8f8fe;
     &-item {
       padding: 15px;
       width: px2rem(162);
@@ -110,10 +113,10 @@ watch(taskBoxArr, (val) => {
         text-align: center;
         line-height: px2rem(48);
         ::v-deep van-icon {
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
       }
       &-content {
         display: flex;
@@ -127,7 +130,6 @@ watch(taskBoxArr, (val) => {
           margin: 0;
         }
       }
-
     }
 
     &-add {

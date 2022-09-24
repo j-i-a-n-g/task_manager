@@ -10,7 +10,7 @@ const createAxios = (TYPE, URL, DATA, PARAMs, res, rej) => {
   }).then(({ data }) => {
     console.log(data)
     if (!data.code) {
-      Toast.fail(data.message)
+      Toast(data.message)
     } else {
       Toast.success(data.message)
     }

@@ -8,12 +8,14 @@
 </template>
 
 <script setup>
-import { ref, markRaw } from 'vue'
+import { ref, markRaw, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import TabBar from '@/components/TabBar.vue'
 import Agent from './Agent.vue'
 import Calendar from '@/views/Calendar.vue'
 import Stats from './Stats.vue'
 import My from './My.vue'
+const router = useRouter()
 const currentComponent = ref(markRaw(Agent))
 const activeIndex = ref(0)
 const toggleTabbar = (index) => {
@@ -33,6 +35,13 @@ const toggleTabbar = (index) => {
       break
   }
 }
+// 页面刚生成时
+onMounted(() => {
+  console.log(router.currentRoute.value.state)
+  // if(router.currentRoute.value.state.index || router.currentRoute.value.state.index === '0') {
+  //   activeIndex.value = parseFloat(router.currentRoute.value.state.index)
+  // }
+})
 </script>
 
 <style lang="scss" scoped>
