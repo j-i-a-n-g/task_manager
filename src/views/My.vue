@@ -4,11 +4,11 @@
     <div class="my-message">
     <van-icon name="chat-o" :dot="true" />
       <div class="my-message-avatar">
-        <img src="@img/avatar.png" alt="">
+        <img :src="`/node${userMessage?.avatar}`" alt="">
       </div>
       <div class="my-message-single">
-        <p class="my-message-single-name">jiang</p>
-        <span class="my-message-single-phone">188****9609</span>
+        <p class="my-message-single-name">{{userMessage?.username}}</p>
+        <span class="my-message-single-phone">{{phone}}</span>
       </div>
     </div>
     <!-- 会员解锁 -->
@@ -25,13 +25,36 @@
       <van-cell title="帮助指南" is-link />
       <van-cell title="关于我们" is-link />
       <van-cell title="建议和反馈" is-link />
-      <van-cell title="设置" is-link />
+      <van-cell title="设置" is-link @click="settingUserData" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { computed, onMounted, reactive } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const store = useStore()
+onMounted(() => {
+  if (store.state.userMessage === {}) {
+    router.push('/login')
+  }
+})
+let userMessage = reactive({})
+userMessage = store.state.userMessage
+// onMounted(() => {
+//   console.log(userMessage)
+// })
+// 对后端传回的手机号进行格式处理
+const phone = computed(() => {
+  return userMessage?.Phone.slice(0, 3) + '****' + userMessage?.Phone.slice(7)
+})
+// 点击设置跳转到设置页面
+const settingUserData = () => {
+  router.push({ path: '/setting' })
+}
 </script>
 
 <style lang="scss" scoped>

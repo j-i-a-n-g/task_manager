@@ -62,7 +62,7 @@ const onSubmit = async (val) => {
   const result = await userLogin(val)
   if (!result.code) return
   store.commit('saveUserMessage', result.data)
-  router.push({ path: '/' })
+  router.push({ name: 'Main' })
 }
 </script>
 
