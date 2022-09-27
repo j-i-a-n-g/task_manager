@@ -1,6 +1,7 @@
 <template>
-  <div class="add-work">
+  <div>
     <NavBar title="工作" />
+  <div class="add-work">
     <div class="add-work-name">
       <p>任务名称</p>
       <van-cell-group inset>
@@ -84,6 +85,7 @@
     <van-button color="#666ee8" block @click="submitWorkDetail"
       >保存</van-button
     >
+  </div>
   </div>
 </template>
 

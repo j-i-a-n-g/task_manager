@@ -15,7 +15,7 @@
           class="agent-list-item-icon"
           :style="{ backgroundColor: item.choosedColor }"
         >
-          <van-icon name="chat-o" color="#fff" />
+          <van-icon name="more-o" size="30" color="#fff" />
         </div>
         <div class="agent-list-item-content">
           <p :style="{ color: item.choosedColor }">{{ item.taskName }}</p>
@@ -105,12 +105,12 @@ const goToWork = (item) => {
       margin-bottom: 10px;
       position: relative;
       &-icon {
-        width: px2rem(48);
-        height: px2rem(48);
+        width: px2rem(40);
+        height: px2rem(40);
         border: 2px solid #fff;
         border-radius: 8px;
         text-align: center;
-        line-height: px2rem(48);
+        line-height: px2rem(40);
         ::v-deep van-icon {
           position: absolute;
           top: 0;
