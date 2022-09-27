@@ -7,5 +7,8 @@ import { Toast, Dialog } from 'vant'
 import 'vant/es/toast/style'
 
 import 'vant/es/dialog/style'
+import VueCookies from 'vue-cookies'
+
+createApp(App).config.globalProperties.$cookies = VueCookies
 
 createApp(App).use(store).use(router).use(Toast).use(Dialog).mount('#app')

@@ -4,7 +4,7 @@
       <SearchBar />
     </div>
     <div class="work-list">
-      <TaskCard />
+      <TaskCard v-for="item in workList" :key="item._id" :item="item" :task_id="$route.query.id"/>
     </div>
     <TabBar @toggleTabbar="toggleTabbar" />
   </div>
@@ -14,12 +14,16 @@
 import TabBar from '@/components/TabBar.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import TaskCard from '@/components/TaskCard.vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+import { computed } from '@vue/runtime-core'
 const router = useRouter()
+const $route = useRoute()
+const store = useStore()
 const toggleTabbar = (index) => {
-  router.push({ name: 'Main', state: { index: index } })
+  router.push({ name: 'Main', params: { index } })
 }
-
+const workList = computed(() => store.getters.taskList($route.query.id))
 </script>
 
 <style lang="scss" scoped>

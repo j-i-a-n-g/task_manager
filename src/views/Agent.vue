@@ -57,7 +57,6 @@ onMounted(async () => {
   })
   store.commit('saveTaskBox', newTaskList)
   taskBoxList.value = newTaskList
-  console.log(newTaskList)
 })
 const show = ref(false)
 const addTaskBox = function () {
@@ -74,7 +73,7 @@ watch(taskBoxArr, (val) => {
 })
 // 点击任务箱，跳转到工作列表页面
 const goToWork = (item) => {
-  router.push({ name: 'Work', params: { item } })
+  router.push({ name: 'Work', query: { id: item._id } })
 }
 </script>
 

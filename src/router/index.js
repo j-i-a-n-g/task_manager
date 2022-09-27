@@ -7,7 +7,6 @@ const routes = [
     name: 'Main',
     component: () => import('@/views/Main.vue'),
     beforeEnter: (to, from, next) => {
-      console.log(to, from)
       if (from.path === '/') {
         to.params = { tag: 1 }
       }
@@ -33,6 +32,11 @@ const routes = [
     path: '/setting',
     name: 'Setting',
     component: () => import('@/views/Setting.vue')
+  },
+  {
+    path: '/addwork',
+    name: 'AddWork',
+    component: () => import('@/views/AddWork.vue')
   }
 ]
 

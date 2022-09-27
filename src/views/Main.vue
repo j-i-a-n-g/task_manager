@@ -46,6 +46,10 @@ onMounted(async () => {
     const result = await autoLogin()
     store.commit('saveUserMessage', result.data)
   }
+  // 如果index有值，则跳转显示对应页面
+  // if($route.params.index) {
+  //   activeIndex.value = index
+  // }
 })
 </script>
 

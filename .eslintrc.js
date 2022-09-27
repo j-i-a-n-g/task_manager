@@ -14,6 +14,14 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off',
+    camelcase: 'off',
+    'no-unused-expressions': [1, {
+      allowTernary: true
+    }]
+  },
+  globals: {
+    $cookies: true
   }
+  // 允许使用三元表达式
 }

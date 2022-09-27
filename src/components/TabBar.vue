@@ -11,14 +11,16 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 const emits = defineEmits(['toggleTabbar'])
+const router = useRouter()
 const active = ref(0)
 const onChange = (index) => {
   emits('toggleTabbar', index)
 }
 const routerToList = (e) => {
   if (e.target.className !== 'tabbar') return
-  console.log('1111')
+  router.push({ path: '/addwork' })
 }
 
 </script>

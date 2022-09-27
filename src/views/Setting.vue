@@ -27,7 +27,7 @@
 import { Dialog } from 'vant'
 import NavBar from '@/components/NavBar.vue'
 import { userLogout } from '@/assets/api/index'
-import { computed } from 'vue'
+import { computed } from '@vue/runtime-core'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 const store = useStore()
@@ -47,8 +47,10 @@ const logout = () => {
   })
     .then(async () => {
       await userLogout()
+      $cookies.remove('connect.sid')
+      // 清除cookie标记
       store.commit('saveUserMessage', {})
-      router.go(-1)
+      router.push('/login')
     })
     .catch(() => {
       // on cancel
