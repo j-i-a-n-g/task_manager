@@ -53,7 +53,7 @@ const saveUsername = async () => {
     height: 100vh;
     background-color: $bgColor;
     &-cart {
-      margin-top: 10px;
+      margin-top: 56px;
       width: 100%;
       background-color: #fff;
       padding-bottom: 30px;
