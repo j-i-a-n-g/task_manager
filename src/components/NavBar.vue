@@ -1,7 +1,7 @@
 <template>
   <van-nav-bar
   :title="title"
-  :right-text="btn ? btn : false"
+  :right-text="btn"
   @click-left="onClickLeft"
   @click-right="onClickRight">
     <template #left>
