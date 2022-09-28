@@ -3,7 +3,7 @@
     <keep-alive>
       <component :is="currentComponent" class="main-view"></component>
     </keep-alive>
-    <TabBar @toggleTabbar="toggleTabbar" />
+      <TabBar @toggleTabbar="toggleTabbar" />
   </div>
 </template>
 

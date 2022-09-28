@@ -1,7 +1,12 @@
 <template>
   <div class="stats">
-    <!-- 本周任务情况 -->
     <p class="stats-title">统计</p>
+    <!-- 各个任务箱子的任务分布情况 -->
+    <div class="stats-mount">
+      <span>各任务箱的任务数量分布</span>
+      <div class="stats-mount-echarts" id="mount" ref="mount"></div>
+    </div>
+    <!-- 本周任务情况 -->
     <div class="stats-situation">
       <span>本周完成任务情况</span>
       <div class="stats-situation-echarts" id="situation" ref="situation"></div>
@@ -23,6 +28,7 @@ const store = useStore()
 // 使用ref创建虚拟DOM引用
 const situation = ref()
 const urgent = ref()
+const mount = ref()
 let workList = ref([])
 workList = computed(() => store.getters.allWorkList)
 // 将工作列表的数据根据任务难度情况划分为五个数组
@@ -34,6 +40,7 @@ const hard = ref(0)
 const important = ref(0)
 onMounted(() => {
   sortingWorkType(workList.value)
+  mountEchartsInit()
   situationEchartsInit()
   urgentEchartsInit()
 })
@@ -59,6 +66,53 @@ const sortingWorkType = (arr) => {
     }
   })
   console.log(simple.value, general.value, difficult.value, hard.value, important.value)
+}
+// 初始化任务箱中任务的数量柱状图
+const mountEchartsInit = () => {
+  const xAxis_data = []
+  const series_data = []
+  store.state.taskBoxArr.forEach(item => {
+    xAxis_data.push(item.taskName)
+    series_data.push(item.taskList.length)
+  })
+  const myEcharts = echarts.init(mount.value)
+  const Options = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+    grid: {
+      left: '5%',
+      right: '5%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: [
+      {
+        type: 'category',
+        data: xAxis_data,
+        axisTick: {
+          alignWithLabel: true
+        }
+      }
+    ],
+    yAxis: [
+      {
+        type: 'value'
+      }
+    ],
+    series: [
+      {
+        name: '任务数量',
+        type: 'bar',
+        barWidth: '60%',
+        data: series_data
+      }
+    ]
+  }
+  myEcharts.setOption(Options)
 }
 // 初始化本周完成任务情况的折线图
 const situationEchartsInit = () => {
@@ -158,6 +212,12 @@ const urgentEchartsInit = () => {
     margin: 10px auto;
     text-align: center;
     color: #444;
+  }
+  &-mount {
+    width: 100%;
+    &-echarts {
+      height: 240px;
+    }
   }
 }
 </style>

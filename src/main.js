@@ -3,9 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import '@js/htmlFontSize.js'
+import 'echarts/lib/component/tooltip'
 import { Toast, Dialog } from 'vant'
 import 'vant/es/toast/style'
-
 import 'vant/es/dialog/style'
 import VueCookies from 'vue-cookies'
 

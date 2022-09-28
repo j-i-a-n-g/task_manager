@@ -17,7 +17,7 @@ const router = useRouter()
 const active = ref(0)
 const onChange = (index) => {
   active.value = index
-  router.push({ name: 'Main', params: { index } })
+  router.push({ name: 'Main' })
   emits('toggleTabbar', index)
 }
 const routerToList = (e) => {
