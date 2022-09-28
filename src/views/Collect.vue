@@ -31,8 +31,9 @@ const deleteWork = id => {
   width: 100%;
   height: 100vh;
   background-color: $bgColor;
+  margin-top: 46px;
   &-list {
-    padding: 0 px2rem(20);
+    padding: 10px px2rem(20) 0;
   }
 }
 </style>

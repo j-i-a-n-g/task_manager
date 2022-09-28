@@ -68,6 +68,7 @@ const reviseUsername = () => {
   width: 100%;
   height: 100vh;
   background-color: $bgColor;
+  margin-top: 46px;
   &-list {
     margin-top: 5px;
     &-user {

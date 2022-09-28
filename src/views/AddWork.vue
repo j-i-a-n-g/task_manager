@@ -16,7 +16,7 @@
           rows="2"
           autosize
           type="textarea"
-          maxlength="50"
+          maxlength="20"
           placeholder="请输入描述......"
           show-word-limit
         />
@@ -158,6 +158,7 @@ onMounted(async () => {
 const taskDetail = ref({})
 // 提交工作详细信息
 const submitWorkDetail = async () => {
+  deadline.value = computedDeadline()
   const taskObj = store.state.taskBoxArr.find((item) => {
     return item.taskName === topic.value
   })
@@ -175,7 +176,8 @@ const submitWorkDetail = async () => {
   router.push('/')
 }
 // 将工作截止时间通过计算属性传入后端
-const deadline = computed(() => {
+const deadline = ref('')
+const computedDeadline = () => {
   const datearr = date.value.split('/')
   const addZero = []
   datearr.forEach(item => {
@@ -185,7 +187,7 @@ const deadline = computed(() => {
     addZero.push('0' + item)
   })
   return addZero.join('-') + ' ' + time.value
-})
+}
 </script>
 
 <style lang="scss" scoped>
@@ -196,9 +198,12 @@ const deadline = computed(() => {
   padding: 0 px2rem(20);
   background-color: $bgColor;
   box-sizing: border-box;
+  margin-top: 46px;
+  position: relative;
   &-name {
     p {
       font-size: 14px;
+      padding-top: 10px;
     }
   }
   &-desc {
@@ -213,8 +218,7 @@ const deadline = computed(() => {
     margin: 0;
   }
   ::v-deep .van-button {
-    position: fixed;
-    bottom: 50px;
+    margin-top: 50px;
     width: px2rem(335);
   }
 }

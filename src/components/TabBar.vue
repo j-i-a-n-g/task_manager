@@ -12,13 +12,15 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 const emits = defineEmits(['toggleTabbar'])
 const router = useRouter()
-const active = ref(0)
+const store = useStore()
+const active = ref(store.state.activeIndex)
 const onChange = (index) => {
-  active.value = index
   router.push({ name: 'Main' })
-  emits('toggleTabbar', index)
+  store.commit('setTabBarIndex', index)
+  emits('toggleTabbar')
 }
 const routerToList = (e) => {
   if (e.target.className !== 'tabbar') return

@@ -1,13 +1,15 @@
 <template>
-  <van-nav-bar
+  <div class="navbar">
+    <van-nav-bar
   :title="title"
   :right-text="btn"
   @click-left="onClickLeft"
   @click-right="onClickRight">
-    <template #left>
+    <template #left v-if="showLeft">
       <van-icon name="arrow-left" size="18" color="#000" />
     </template>
   </van-nav-bar>
+  </div>
 </template>
 
 <script setup>
@@ -20,6 +22,10 @@ defineProps({
   btn: {
     type: String,
     default: ''
+  },
+  showLeft: {
+    type: Boolean,
+    default: true
   }
 })
 const router = useRouter()
@@ -31,5 +37,14 @@ const onClickRight = () => {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+  .navbar {
+    width: 100%;
+    height: 46px;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
 </style>

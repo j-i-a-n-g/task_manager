@@ -20,7 +20,8 @@ import My from './My.vue'
 const router = useRouter()
 const store = useStore()
 const currentComponent = ref(markRaw(Agent))
-const toggleTabbar = (index) => {
+const toggleTabbar = () => {
+  const index = store.state.activeIndex
   switch (index) {
     case 0:
       currentComponent.value = markRaw(Agent)
@@ -44,6 +45,7 @@ onMounted(async () => {
     const result = await autoLogin()
     store.commit('saveUserMessage', result.data)
   }
+  toggleTabbar()
 })
 </script>
 

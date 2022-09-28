@@ -3,7 +3,9 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     userMessage: {},
-    taskBoxArr: []
+    taskBoxArr: [],
+    // 底部切换栏对应的index
+    activeIndex: 3
   },
   getters: {
     // 找到对应任务箱子下的工作列表
@@ -23,6 +25,10 @@ export default createStore({
     }
   },
   mutations: {
+    // 修改底部切换栏的index
+    setTabBarIndex: (state, index) => {
+      state.activeIndex = index
+    },
     // 保存用户信息:
     saveUserMessage (state, val) {
       state.userMessage = val

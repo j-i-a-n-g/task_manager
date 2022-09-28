@@ -7,7 +7,6 @@ const routes = [
     name: 'Main',
     component: () => import('@/views/Main.vue'),
     beforeEnter: (to, from, next) => {
-      console.log(from)
       if (from.path === '/') {
         to.params = { tag: 1 }
       }

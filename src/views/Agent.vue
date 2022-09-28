@@ -82,12 +82,14 @@ const goToWork = (item) => {
 .agent {
   width: px2rem(375);
   padding: 0 px2rem(20);
+  background-color: $bgColor;
   box-sizing: border-box;
   .search {
     position: fixed;
     top: 0;
+    left: 0;
     z-index: 2;
-    width: px2rem(335);
+    width: px2rem(375);
   }
   &-list {
     padding-top: 55px;

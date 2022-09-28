@@ -1,6 +1,6 @@
 <template>
   <div class="stats">
-    <p class="stats-title">统计</p>
+    <NavBar title="统计" :showLeft="false" />
     <!-- 各个任务箱子的任务分布情况 -->
     <div class="stats-mount">
       <span>各任务箱的任务数量分布</span>
@@ -20,6 +20,7 @@
 </template>
 
 <script setup>
+import NavBar from '@/components/NavBar.vue'
 import * as echarts from 'echarts'
 import { ref } from 'vue'
 import { useStore } from 'vuex'
@@ -190,6 +191,7 @@ const urgentEchartsInit = () => {
 <style lang="scss" scoped>
 .stats {
   width: 100%;
+  margin-top: 46px;
   span {
     font-size: 14px;
     color: #999;
