@@ -168,7 +168,8 @@ const submitWorkDetail = async () => {
     deadline: deadline.value,
     degree: degree.value,
     id: taskObj._id,
-    work_id: $route.query.id || null
+    work_id: $route.query.id || null,
+    user_id: store.state.userMessage._id
   }
   await postWorkDetail(taskDetail.value)
   router.push('/')

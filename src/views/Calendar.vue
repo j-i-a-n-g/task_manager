@@ -11,7 +11,7 @@
       <p>当天前需完成的工作</p>
       <div v-if="workList.length">
         <template v-for="item in workList" :key="item._id">
-        <TaskCard :item="item" />
+        <TaskCard :item="item" @deleteWork="deleteWork" />
       </template>
       </div>
       <span v-else>暂无工作安排</span>
@@ -39,6 +39,12 @@ const filtered = (val) => {
     workList.value = workList.value.filter(val => {
       return val._id !== item._id
     })
+  })
+}
+// 从数组中删除工作
+const deleteWork = id => {
+  workList.value = allWorkList.value.filter(item => {
+    return item._id !== id
   })
 }
 </script>

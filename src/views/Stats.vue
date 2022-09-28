@@ -110,10 +110,8 @@ const urgentEchartsInit = () => {
           position: 'center'
         },
         emphasis: {
-          scale: true,
-          scaleSize: 10,
           label: {
-            show: true,
+            show: false,
             fontSize: '40',
             fontWeight: 'bold'
           }

@@ -37,6 +37,16 @@ const routes = [
     path: '/addwork',
     name: 'AddWork',
     component: () => import('@/views/AddWork.vue')
+  },
+  {
+    path: '/reviseUsername',
+    name: 'Username',
+    component: () => import('@/components/Username.vue')
+  },
+  {
+    path: '/collect',
+    name: 'Collect',
+    component: () => import('@/views/Collect.vue')
   }
 ]
 

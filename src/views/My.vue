@@ -17,7 +17,7 @@
     </div>
     <div class="my-action">
       <div class="my-action-design">
-      <van-cell title="我的收藏" is-link />
+      <van-cell title="我的收藏" is-link @click="routerToCollect" />
       <van-cell title="个性化外观" is-link />
       </div>
       <div class="my-action-about">
@@ -54,6 +54,10 @@ const phone = computed(() => {
 // 点击设置跳转到设置页面
 const settingUserData = () => {
   router.push({ path: '/setting' })
+}
+// 点击跳转到我的收藏页面
+const routerToCollect = () => {
+  router.push({ path: '/collect' })
 }
 </script>
 

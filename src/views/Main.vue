@@ -20,9 +20,7 @@ import My from './My.vue'
 const router = useRouter()
 const store = useStore()
 const currentComponent = ref(markRaw(Agent))
-const activeIndex = ref(0)
 const toggleTabbar = (index) => {
-  activeIndex.value = index
   switch (index) {
     case 0:
       currentComponent.value = markRaw(Agent)
@@ -46,10 +44,6 @@ onMounted(async () => {
     const result = await autoLogin()
     store.commit('saveUserMessage', result.data)
   }
-  // 如果index有值，则跳转显示对应页面
-  // if($route.params.index) {
-  //   activeIndex.value = index
-  // }
 })
 </script>
 

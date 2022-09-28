@@ -4,7 +4,7 @@
     <div class="setting-list">
       <div class="setting-list-user">
         <van-cell title="头像" is-link />
-        <van-cell title="昵称" is-link :value="username" />
+        <van-cell title="昵称" is-link :value="username" @click="reviseUsername" />
         <van-cell title="ID" :value="id" />
       </div>
       <div class="setting-list-about">
@@ -55,6 +55,10 @@ const logout = () => {
     .catch(() => {
       // on cancel
     })
+}
+// 跳转到修改昵称页面
+const reviseUsername = () => {
+  router.push({ path: '/reviseUsername' })
 }
 </script>
 

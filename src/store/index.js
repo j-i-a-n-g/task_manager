@@ -35,15 +35,26 @@ export default createStore({
     addTaskBox (state, val) {
       state.taskBoxArr.push(val)
     },
-    // 修改工作的任务状态
-    changeWorkState (state, { work_id, checked, task_id }) {
+    // 修改工作的任务状态或者收藏情况
+    changeWorkState (state, { work_id, checked, collect, task_id }) {
       state.taskBoxArr.map(item => {
         if (item._id === task_id) return item
         item.taskList.forEach(item => {
           if (item._id !== work_id) return item
           item.finish = checked
+          item.collect = collect
         })
         return item
+      })
+    },
+    // 修改用户名
+    reviseUsername (state, val) {
+      state.userMessage.username = val
+    },
+    // 删除工作
+    deleteWork (state, id) {
+      state.taskBoxArr = state.taskBoxArr.filter(item => {
+        return item._id !== id
       })
     }
   },

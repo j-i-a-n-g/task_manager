@@ -8,7 +8,7 @@
           v-model="phone"
           name="phone"
           placeholder="请输入手机号码"
-          :rules="[{ required: true, message: '请输入手机号码' }]"
+          :rules="[{ rule , message: '请输入手机号码' }]"
         />
         <van-field
           v-model="code"
@@ -57,8 +57,10 @@ const router = useRouter()
 const store = useStore()
 const code = ref(111111)
 const phone = ref(18819609609)
+const rule = /^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/
 // 登录事件
 const onSubmit = async (val) => {
+  console.log(val)
   const result = await userLogin(val)
   if (!result.code) return
   store.commit('saveUserMessage', result.data)

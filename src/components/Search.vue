@@ -23,14 +23,17 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import TaskCard from './TaskCard.vue'
 import { searchWork } from '@/assets/api/index'
 const router = useRouter()
+const store = useStore()
 const value = ref('')
 // 搜索得到的工作列表结果
 const workCard = ref([])
+const userId = store.state.userMessage._id
 const onSearch = async (val) => {
-  const result = await searchWork({ val })
+  const result = await searchWork({ val, id: userId })
   workCard.value = result.data
 }
 const onCancel = () => {

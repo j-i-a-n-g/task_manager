@@ -9,13 +9,13 @@ const createAxios = (TYPE, URL, DATA, PARAMs, res, rej) => {
     params: PARAMs
   }).then(({ data }) => {
     console.log(data)
-    if (!data.code) {
+    if (data.code) {
       if (data.message) {
-        Toast(data.message)
+        Toast.success(data.message)
       }
     } else {
       if (data.message) {
-        Toast.success(data.message)
+        Toast(data.message)
       }
     }
     res(data)
