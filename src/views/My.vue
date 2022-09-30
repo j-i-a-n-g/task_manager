@@ -18,13 +18,13 @@
     <div class="my-action">
       <div class="my-action-design">
       <van-cell title="我的收藏" is-link @click="routerToCollect" />
-      <van-cell title="个性化外观" is-link />
+      <van-cell title="个性化外观" is-link @click="toastAbout" />
       </div>
       <div class="my-action-about">
-      <van-cell title="邀请好友" is-link />
-      <van-cell title="帮助指南" is-link />
-      <van-cell title="关于我们" is-link />
-      <van-cell title="建议和反馈" is-link />
+      <van-cell title="邀请好友" is-link @click="toastAbout" />
+      <van-cell title="帮助指南" is-link @click="toastAbout" />
+      <van-cell title="关于我们" is-link @click="toastAbout" />
+      <van-cell title="建议和反馈" is-link @click="toastAbout" />
       <van-cell title="设置" is-link @click="settingUserData" />
       </div>
     </div>
@@ -35,6 +35,7 @@
 import { computed, onMounted, reactive } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { Toast } from 'vant'
 const router = useRouter()
 const store = useStore()
 onMounted(() => {
@@ -58,6 +59,10 @@ const settingUserData = () => {
 // 点击跳转到我的收藏页面
 const routerToCollect = () => {
   router.push({ path: '/collect' })
+}
+// 尚未开发的功能
+const toastAbout = () => {
+  Toast('暂未开放，敬请期待')
 }
 </script>
 

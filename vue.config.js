@@ -18,6 +18,12 @@ module.exports = {
   configureWebpack: config => {
     if (process.env.NODE_ENV === 'production') {
       // 生产环境
+      // config.set('externals', {
+      //   vue: 'vue',
+      //   'vue-router': 'VueRouter',
+      //   aixos: 'axios',
+      //   echarts: 'echarts'
+      // })
     } else {
       // 开发环境
     }
